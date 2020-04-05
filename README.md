@@ -23,7 +23,7 @@ To actually run the application on the phone:
 
 ```
 npx react-native run-android
-react-native start
+npx react-native start
 ```
 
 You can check if the Android phone is connected by running:
