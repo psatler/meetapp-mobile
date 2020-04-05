@@ -46,6 +46,16 @@ npm install -g @react-native-community/cli
 ```
 After that, you would be able to start a brand new project without using the flag.
 
+###### Adding Storybook for React Native with Typescript
+
+```
+npx -p @storybook/cli sb init --type react_native
+
+```
+- Press yes to the question of installing Storybook server while installing. 
+- Add the app name to the `index.js` in the _storybook_ folder as this is a _vanilla RN project_.
+- `yarn storybook` to run the storybook server. For now, you got to uncomment the import in the `index.js` in the root folder to see the stories.
+
 ### License
 
 This project is licensed under the terms of the [MIT License](https://opensource.org/licenses/MIT) © Pablo Satler 2020
