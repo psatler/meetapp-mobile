@@ -46,13 +46,33 @@ npm install -g @react-native-community/cli
 ```
 After that, you would be able to start a brand new project without using the flag.
 
+###### Add editorconfig and eslint rules
+
+The project was left with the default ESLint and prettier configs from the typescript template, with some minor tweaks.
+The plugin for hooks was added: `yarn add -D eslint-plugin-react-hooks`.
+
+
+Also, a `.editorconfig` file was generated with the following entries:
+
+```c
+root = true
+
+[*]
+end_of_line = lf
+indent_style = space
+indent_size = 2
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+```
+
 ###### Adding Storybook for React Native with Typescript
 
 ```
 npx -p @storybook/cli sb init --type react_native
 
 ```
-- Press yes to the question of installing Storybook server while installing. 
+- Press yes to the question of installing Storybook server while installing.
 - Add the app name to the `index.js` in the _storybook_ folder as this is a _vanilla RN project_.
 - `yarn storybook` to run the storybook server. For now, you got to uncomment the import in the `index.js` in the root folder to see the stories.
 
