@@ -46,10 +46,17 @@ npm install -g @react-native-community/cli
 ```
 After that, you would be able to start a brand new project without using the flag.
 
+###### Add React Navigation v5
+
+```
+yarn add @react-navigation/native
+
+```
+
 ###### Add editorconfig and eslint rules
 
 The project was left with the default ESLint and prettier configs from the typescript template, with some minor tweaks.
-The plugin for hooks was added: `yarn add -D eslint-plugin-react-hooks`.
+The plugin for hooks was added: `yarn add -D eslint-plugin-react-hooks`. Also, adjust some settings in the `.eslintrc.js` file.
 
 
 Also, a `.editorconfig` file was generated with the following entries:

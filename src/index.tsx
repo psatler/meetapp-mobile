@@ -1,29 +1,27 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { SafeAreaView, StyleSheet, View, Text, StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const App = () => {
+const AppStack = createStackNavigator();
+
+// screens
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+
+function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={styles.safeArea}>
-        <Text> Hello, World! </Text>
-        <Text> Hello, World! </Text>
-        <Text> Hello, World! </Text>
-      </SafeAreaView>
-    </View>
+    <NavigationContainer>
+      <AppStack.Navigator>
+        <AppStack.Screen
+          options={{ headerShown: false }}
+          component={SignIn}
+          name="SignIn"
+        />
+        <AppStack.Screen component={SignUp} name="SignUp" />
+      </AppStack.Navigator>
+    </NavigationContainer>
   );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  safeArea: {
-    // justifyContent: 'center',
-    // alignItems: 'center',
-  },
-});
+}
 
 export default App;
