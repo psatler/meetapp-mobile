@@ -53,6 +53,39 @@ yarn add @react-navigation/native
 
 ```
 
+###### Add root import
+Install babel root import:
+```
+yarn add -D babel-plugin-root-import eslint-import-resolver-babel-plugin-root-import
+```
+then, in the `babel.config.js` we add the _babel-root-import_ plugin:
+```
+module.exports = {
+  presets: ['module:metro-react-native-babel-preset'],
+  plugins: [
+    // 'babel-plugin-styled-components',
+    [
+      'babel-plugin-root-import',
+      {
+        rootPathPrefix: '~',
+        rootPathSuffix: 'src',
+      },
+    ],
+  ],
+};
+```
+And finally, in the `tsconfig.json` file:
+```
+  "compilerOptions": {
+    ...
+    "baseUrl": "./src", // all paths are relative to the baseUrl
+    "paths": {
+      "~/*": ["*"] // resolve any `~/foo/bar` to `<baseUrl>/foo/bar`
+    }
+  },
+  ...
+```
+
 ###### Add editorconfig and eslint rules
 
 The project was left with the default ESLint and prettier configs from the typescript template, with some minor tweaks.

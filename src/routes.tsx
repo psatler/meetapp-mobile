@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 const AppStack = createStackNavigator();
 
 // screens
-import SignIn from './pages/SignIn';
+import SignIn from '~/pages/SignIn';
 import SignUp from './pages/SignUp';
 
 // protected routes
