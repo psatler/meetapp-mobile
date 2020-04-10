@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 // @ts-ignore
 import logo from '~/assets/logo.png';
@@ -16,6 +17,12 @@ import {
 } from './styles';
 
 export default function SignIn() {
+  const navigation = useNavigation();
+
+  function goToSignUpPage() {
+    navigation.navigate('SignUp');
+  }
+
   return (
     <Background>
       <Container>
@@ -36,7 +43,7 @@ export default function SignIn() {
           <SubmitButton onPress={() => {}}>Log in</SubmitButton>
         </Form>
 
-        <SignLink onPress={() => {}}>
+        <SignLink onPress={() => goToSignUpPage()}>
           <SignLinkText>Create an account</SignLinkText>
         </SignLink>
       </Container>

@@ -1,6 +1,10 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  TransitionPresets,
+  CardStyleInterpolators,
+} from '@react-navigation/stack';
 
 const AppStack = createStackNavigator();
 
@@ -35,12 +39,22 @@ function Routes() {
             <AppStack.Screen
               name="SignIn"
               component={SignIn}
-              options={{ headerShown: false }}
+              options={{
+                headerShown: false,
+                ...TransitionPresets.SlideFromRightIOS,
+                // cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+              }}
             />
             <AppStack.Screen
               name="SignUp"
               component={SignUp}
-              options={{ headerShown: false }}
+              options={{
+                headerShown: false,
+                ...TransitionPresets.SlideFromRightIOS,
+                // cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                gestureEnabled: true,
+                gestureDirection: 'horizontal',
+              }}
             />
           </>
         )}
@@ -50,3 +64,15 @@ function Routes() {
 }
 
 export default Routes;
+
+const animationConfigs = {
+  animation: 'spring',
+  config: {
+    stiffness: 1000,
+    damping: 500,
+    mass: 3,
+    overshootClamping: false,
+    restDisplacementThreshold: 0.01,
+    restSpeedThreshold: 0.01,
+  },
+};
