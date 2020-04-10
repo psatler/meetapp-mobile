@@ -32,6 +32,12 @@ You can check if the Android phone is connected by running:
 adb devices
 ```
 
+### Dependencies used
+
+- [React Navigation v5](https://reactnavigation.org/)
+- [react-native-linear-gradient](https://github.com/react-native-community/react-native-linear-gradient)
+
+
 ### Acknowledments
 
 To create the basis of this project with Typescript the following command was used:
