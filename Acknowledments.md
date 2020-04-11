@@ -34,7 +34,7 @@ and also import the config file at entry file of the project at `src/index.tsx`.
 
 **TIP**: you might need to run `adb reverse tcp:9090 tcp:9090` in order to be able to get the device connected to reactotron.
 
-This project uses Mobx State Tree as its state management tool. So, next, we will install the dependencies needed to hook up all of them with Reactotron.
+This project uses Redux as its state management tool. So, next, we will install the dependencies needed to hook up all of them with Reactotron.
 
 ```
 yarn add reactotron-redux-saga reactotron-redux -D
