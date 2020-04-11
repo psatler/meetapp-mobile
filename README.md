@@ -32,11 +32,14 @@ You can check if the Android phone is connected by running:
 adb devices
 ```
 
+You can install Reactotron and use it to switch between the App screen and Storybook screens.
+
 ### Dependencies used
 
 - [React Navigation v5](https://reactnavigation.org/)
 - [react-native-linear-gradient](https://github.com/react-native-community/react-native-linear-gradient)
 - [Reactotron](https://github.com/infinitered/reactotron) for debugging
+- [Storybook](https://storybook.js.org/)
 
 
 ### Acknowledments
