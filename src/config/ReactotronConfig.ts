@@ -1,7 +1,6 @@
 import Reactotron from 'reactotron-react-native';
-import { mst } from 'reactotron-mst';
-// import { reactotronRedux } from 'reactotron-redux';
-// import reactotronSaga from 'reactotron-redux-saga';
+import { reactotronRedux } from 'reactotron-redux';
+import reactotronSaga from 'reactotron-redux-saga';
 
 declare global {
   interface Console {
@@ -14,9 +13,8 @@ if (__DEV__) {
     .useReactNative({
       storybook: true,
     })
-    .use(mst())
-    // .use(reactotronRedux())
-    // .use(reactotronSaga())
+    .use(reactotronRedux())
+    .use(reactotronSaga({}))
     .connect();
 
   // cleaning up the logs
