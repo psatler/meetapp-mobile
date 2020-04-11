@@ -66,10 +66,17 @@ You can find the docs [here](https://github.com/infinitered/reactotron/blob/mast
 yarn add -D reactotron-react-native
 
 ```
-
 then, we set up our configuration at `./src/config/ReactotronConfig.ts`
 
 and also import the config file at entry file of the project at `src/index.tsx`.
+
+This project uses Mobx State Tree as its state management tool. So, next, we will install the dependencies needed to hook up all of them with Reactotron.
+
+**TIP**: you might need to run `adb reverse tcp:9090 tcp:9090` in order to be able to get the device connected to reactotron.
+
+```
+yarn add mobx mobx-react mobx-state-tree
+```
 
 
 ###### Add root import
