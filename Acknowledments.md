@@ -116,3 +116,27 @@ npx -p @storybook/cli sb init --type react_native
 - Press yes to the question of installing Storybook server while installing.
 - Add the app name to the `index.js` in the _storybook_ folder as this is a _vanilla RN project_.
 - `yarn storybook` to run the storybook server. For now, you got to uncomment the import in the `index.js` in the root folder to see the stories.
+
+
+### Create the app icon, change its name, etc
+
+Paste the app icon design at [https://appicon.co/#app-icon](https://appicon.co/#app-icon) website and dowloaded the generated app icons.
+
+##### Android
+
+- Changing the name: Go to `android/app/src/main/res/values/strings.xml` and change the name.
+- Setting app the icons:
+  - Go to [Ape Tools](https://apetools.webprofusion.com/#/) website. Select a png image 1024x1024 and choose android and ios. Then download the zip.
+  - Delete the mimap folders and paste the _drawable_ ones to the `android/app/src/main/res`.
+  - Then, at the `android/app/src/main/AndroidManifest.xml` change the android:icon
+  ```
+      ...
+      android:icon="@drawable/icon"
+      android:roundIcon="@drawable/icon"
+    ...
+  ```
+
+
+  -
+
+- For _android_: Go to the `android/app/src/main/res` directory and
