@@ -1,11 +1,11 @@
-import Reactotron, { storybook } from 'reactotron-react-native';
+import Reactotron from 'reactotron-react-native';
 import { mst } from 'reactotron-mst';
 // import { reactotronRedux } from 'reactotron-redux';
 // import reactotronSaga from 'reactotron-redux-saga';
 
 declare global {
   interface Console {
-    tron: any;
+    tron: typeof Reactotron;
   }
 }
 
