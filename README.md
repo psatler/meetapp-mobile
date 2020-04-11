@@ -36,6 +36,7 @@ adb devices
 
 - [React Navigation v5](https://reactnavigation.org/)
 - [react-native-linear-gradient](https://github.com/react-native-community/react-native-linear-gradient)
+- [Reactotron](https://github.com/infinitered/reactotron) for debugging
 
 
 ### Acknowledments
@@ -58,6 +59,18 @@ After that, you would be able to start a brand new project without using the fla
 yarn add @react-navigation/native
 
 ```
+
+###### Add reactotron and its plugins
+You can find the docs [here](https://github.com/infinitered/reactotron/blob/master/docs/quick-start-react-native.md).
+```
+yarn add -D reactotron-react-native
+
+```
+
+then, we set up our configuration at `./src/config/ReactotronConfig.ts`
+
+and also import the config file at entry file of the project at `src/index.tsx`.
+
 
 ###### Add root import
 Install babel root import:
