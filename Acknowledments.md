@@ -22,6 +22,28 @@ yarn add @react-navigation/native
 
 ```
 
+### Installing mobx-state-tree
+
+- Install Mobx State tree
+```
+yarn add mobx mobx-react mobx-state-tree
+```
+Next, enabled experimental decorators support in the `tsconfig.json` file.
+
+<!-- Then, install a babel plugin so we can use ES7 decorators:
+```
+yarn add -D babel-plugin-transform-decorators-legacy
+``` -->
+
+Next step was adding the boilerplate for the Mobx State Tree found in the models folder.
+- create the `RootStore.ts`
+- create the `rootStoreContext.ts`
+- create the `setupRootStore.ts`
+
+These files are then imported in the `src/index.tsx` file where the initial set up is made. We also add the root tree to
+be trackable by Reactotron. Once inside Reactotron, you can subscribe and see the tree changes.
+
+
 ### Add reactotron and its plugins
 You can find the docs [here](https://github.com/infinitered/reactotron/blob/master/docs/quick-start-react-native.md).
 ```
@@ -163,6 +185,5 @@ From here on, we're going to configure the **splash screen**.
   ```
   - 4) After that, we are set to go. More info about the process can be found at [this video](https://www.youtube.com/watch?v=3Gf9yb53bJM) in pt-BR.
 
-##### iOS
 
 
