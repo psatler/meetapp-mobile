@@ -5,7 +5,7 @@ import { mst } from 'reactotron-mst';
 
 declare global {
   interface Console {
-    tron: typeof Reactotron;
+    tron: typeof Reactotron; // eslint-disable-line no-undef
   }
 }
 
