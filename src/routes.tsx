@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import {
   createStackNavigator,
   TransitionPresets,
-  CardStyleInterpolators,
+  // CardStyleInterpolators,
 } from '@react-navigation/stack';
 
 const AppStack = createStackNavigator();
@@ -65,14 +65,14 @@ function Routes() {
 
 export default Routes;
 
-const animationConfigs = {
-  animation: 'spring',
-  config: {
-    stiffness: 1000,
-    damping: 500,
-    mass: 3,
-    overshootClamping: false,
-    restDisplacementThreshold: 0.01,
-    restSpeedThreshold: 0.01,
-  },
-};
+// const animationConfigs = {
+//   animation: 'spring',
+//   config: {
+//     stiffness: 1000,
+//     damping: 500,
+//     mass: 3,
+//     overshootClamping: false,
+//     restDisplacementThreshold: 0.01,
+//     restSpeedThreshold: 0.01,
+//   },
+// };

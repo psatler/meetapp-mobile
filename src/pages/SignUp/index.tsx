@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -18,10 +18,18 @@ import {
 
 export default function SignUp() {
   const navigation = useNavigation();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   function goToSignInPage() {
     navigation.navigate('SignIn');
   }
+
+  function handleSubmit() {}
 
   return (
     <Background>
@@ -33,6 +41,12 @@ export default function SignUp() {
             autoCorrect={false}
             autoCapitalize="none"
             placeholder="Type your full name"
+            // acessibility stuff below
+            blurOnSubmit={false}
+            returnKeyType="next"
+            onSubmitEditing={() => emailRef!.current!.focus()}
+            value={name}
+            onChangeText={setName}
           />
           <FormInput
             icon="mail-outline"
@@ -40,11 +54,24 @@ export default function SignUp() {
             autoCorrect={false}
             autoCapitalize="none"
             placeholder="Type your email"
+            // acessibility stuff below
+            blurOnSubmit={false}
+            ref={emailRef}
+            returnKeyType="next"
+            onSubmitEditing={() => passwordRef!.current!.focus()}
+            value={email}
+            onChangeText={setEmail}
           />
           <FormInput
             icon="lock-outline"
             secureTextEntry // to display the dots ****
             placeholder="Your secret password"
+            // acessibility stuff below
+            ref={passwordRef}
+            returnKeyType="send"
+            onSubmitEditing={handleSubmit}
+            value={password}
+            onChangeText={setPassword}
           />
           <SubmitButton onPress={() => {}}>Log in</SubmitButton>
         </Form>
