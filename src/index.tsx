@@ -2,6 +2,9 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { StatusBar } from 'react-native';
 
+import './config/ReactotronConfig';
+
+import Storybook from '../storybook'; //  to see the storybook
 import Routes from './routes';
 
 function App() {
@@ -13,4 +16,5 @@ function App() {
   );
 }
 
-export default App;
+// export default App;
+export default console.tron.storybookSwitcher(Storybook)(App);

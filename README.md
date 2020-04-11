@@ -32,10 +32,14 @@ You can check if the Android phone is connected by running:
 adb devices
 ```
 
+You can install Reactotron and use it to switch between the App screen and Storybook screens.
+
 ### Dependencies used
 
 - [React Navigation v5](https://reactnavigation.org/)
 - [react-native-linear-gradient](https://github.com/react-native-community/react-native-linear-gradient)
+- [Reactotron](https://github.com/infinitered/reactotron) for debugging
+- [Storybook](https://storybook.js.org/)
 
 
 ### Acknowledments
@@ -58,6 +62,38 @@ After that, you would be able to start a brand new project without using the fla
 yarn add @react-navigation/native
 
 ```
+
+###### Add reactotron and its plugins
+You can find the docs [here](https://github.com/infinitered/reactotron/blob/master/docs/quick-start-react-native.md).
+```
+yarn add -D reactotron-react-native
+
+```
+then, we set up our configuration at `./src/config/ReactotronConfig.ts`
+
+and also import the config file at entry file of the project at `src/index.tsx`.
+
+**TIP**: you might need to run `adb reverse tcp:9090 tcp:9090` in order to be able to get the device connected to reactotron.
+
+This project uses Mobx State Tree as its state management tool. So, next, we will install the dependencies needed to hook up all of them with Reactotron.
+
+```
+yarn add mobx mobx-react mobx-state-tree
+```
+Then, as shown [here](https://github.com/infinitered/reactotron/blob/master/docs/plugin-mst.md), we install the plugin for mobx state tree
+```
+yarn add -D reactotron-mst
+```
+
+**SUPPORT FOR STORYBOOK SWITCHER**
+Next, we set up the support for [Storybook](https://storybook.js.org/) by following the guide at [https://github.com/infinitered/reactotron/blob/master/docs/plugin-storybook.md](https://github.com/infinitered/reactotron/blob/master/docs/plugin-storybook.md).
+
+In my case, I just exported default the _StorybookUIRoot_ from the `storybook/index.js`. Then, I imported it at the app index, found at `src/index.tsx`. So, in this file, I added the _reactotron switcher_ as a HoC, so, it became:
+```
+export default console.tron.storybookSwitcher(Storybook)(App);
+```
+**PS**: Keep in mind that I had Reactotron on console.tron from the `src/config/ReactotronConfig.ts` file.
+
 
 ###### Add root import
 Install babel root import:
