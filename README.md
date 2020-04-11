@@ -70,13 +70,26 @@ then, we set up our configuration at `./src/config/ReactotronConfig.ts`
 
 and also import the config file at entry file of the project at `src/index.tsx`.
 
-This project uses Mobx State Tree as its state management tool. So, next, we will install the dependencies needed to hook up all of them with Reactotron.
-
 **TIP**: you might need to run `adb reverse tcp:9090 tcp:9090` in order to be able to get the device connected to reactotron.
+
+This project uses Mobx State Tree as its state management tool. So, next, we will install the dependencies needed to hook up all of them with Reactotron.
 
 ```
 yarn add mobx mobx-react mobx-state-tree
 ```
+Then, as shown [here](https://github.com/infinitered/reactotron/blob/master/docs/plugin-mst.md), we install the plugin for mobx state tree
+```
+yarn add -D reactotron-mst
+```
+
+**SUPPORT FOR STORYBOOK SWITCHER**
+Next, we set up the support for [Storybook](https://storybook.js.org/) by following the guide at [https://github.com/infinitered/reactotron/blob/master/docs/plugin-storybook.md](https://github.com/infinitered/reactotron/blob/master/docs/plugin-storybook.md).
+
+In my case, I just exported default the _StorybookUIRoot_ from the `storybook/index.js`. Then, I imported it at the app index, found at `src/index.tsx`. So, in this file, I added the _reactotron switcher_ as a HoC, so, it became:
+```
+export default console.tron.storybookSwitcher(Storybook)(App);
+```
+**PS**: Keep in mind that I had Reactotron on console.tron from the `src/config/ReactotronConfig.ts` file.
 
 
 ###### Add root import

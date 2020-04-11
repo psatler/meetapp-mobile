@@ -1,4 +1,4 @@
-import Reactotron from 'reactotron-react-native';
+import Reactotron, { storybook } from 'reactotron-react-native';
 import { mst } from 'reactotron-mst';
 // import { reactotronRedux } from 'reactotron-redux';
 // import reactotronSaga from 'reactotron-redux-saga';
@@ -11,7 +11,9 @@ declare global {
 
 if (__DEV__) {
   const tron = Reactotron.configure({ host: 'localhost' })
-    .useReactNative()
+    .useReactNative({
+      storybook: true,
+    })
     .use(mst())
     // .use(reactotronRedux())
     // .use(reactotronSaga())
