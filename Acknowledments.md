@@ -135,8 +135,34 @@ Paste the app icon design at [https://appicon.co/#app-icon](https://appicon.co/#
       android:roundIcon="@drawable/icon"
     ...
   ```
+From here on, we're going to configure the **splash screen**.
+
+- Next, we configure the splash screen.
+  - 1) we create a `colors.xml` file at `android/app/src/main/res/values/colors.xml` and set the primary color.
+  ```xml
+  <?xml version="1.0" encoding="utf-8" ?>
+  <resources>
+    <color name="primary">#D03A53</color>
+  </resources>
+  ```
+  - 2) Go to the _drawable_ folder and create a `android/app/src/main/res/drawable/background_splash.xml` file. The configuration below inserts the icon in the center of the screen and fill the rest of the background with the primary color set before.
+  ```xml
+  <?xml version="1.0" encoding="utf-8" ?>
+
+  <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/primary" />
+
+    <item android:height="200dp" android:width="200dp" android:drawable="@drawable/icon" android:gravity="center" />
+  </layer-list>
+  ```
+  - 3) Next, we go to the `android/app/src/main/res/values/styles.xml` file and perform some modifications, adding the following:
+  ```xml
+  <item name="android:windowBackground">@drawable/background_splash</item>
+
+  <item name="android:statusBarColor">@color/primary</item>
+  ```
+  - 4) After that, we are set to go. More info about the process can be found at [this video](https://www.youtube.com/watch?v=3Gf9yb53bJM) in pt-BR.
+
+##### iOS
 
 
-  -
-
-- For _android_: Go to the `android/app/src/main/res` directory and
