@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+import { signUpRequest } from '~/store/ducks/auth/actions';
+import { ApplicationState } from '~/store/createStore';
 
 // @ts-ignore
 import logo from '~/assets/logo.png';
@@ -17,9 +20,12 @@ import {
 } from './styles';
 
 export default function SignUp() {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const emailRef = useRef();
   const passwordRef = useRef();
+
+  const loading = useSelector((state: ApplicationState) => state.auth.loading);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -29,7 +35,9 @@ export default function SignUp() {
     navigation.navigate('SignIn');
   }
 
-  function handleSubmit() {}
+  function handleSubmit() {
+    dispatch(signUpRequest(name, email, password));
+  }
 
   return (
     <Background>
@@ -73,7 +81,9 @@ export default function SignUp() {
             value={password}
             onChangeText={setPassword}
           />
-          <SubmitButton onPress={() => {}}>Log in</SubmitButton>
+          <SubmitButton onPress={handleSubmit} loading={loading}>
+            Log in
+          </SubmitButton>
         </Form>
 
         <SignLink onPress={() => goToSignInPage()}>
