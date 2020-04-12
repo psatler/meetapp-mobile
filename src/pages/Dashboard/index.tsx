@@ -6,9 +6,9 @@ import Background from '~/components/Background';
 
 export default function Dashboard() {
   return (
-    <Background>
+    <Background isLoggedIn>
       <View>
-        <Text> Dashboard!! </Text>
+        <Text style={{ color: 'white' }}> Dashboard!! </Text>
       </View>
     </Background>
   );

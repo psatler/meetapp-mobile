@@ -1,8 +1,15 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
+import Background from '~/components/Background';
 // import { Container } from './styles';
 
 export default function MeetupRegistration() {
-  return <View />;
+  return (
+    <Background isLoggedIn>
+      <View>
+        <Text style={{ color: 'white' }}> MeetupRegistration!! </Text>
+      </View>
+    </Background>
+  );
 }

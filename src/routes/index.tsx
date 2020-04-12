@@ -28,7 +28,11 @@ function Routes() {
       <AppStack.Navigator>
         {isLoggedIn ? (
           <>
-            <AppStack.Screen name="Home" component={ProtectedRoutes} />
+            <AppStack.Screen
+              name="Home"
+              options={{ headerShown: false }}
+              component={ProtectedRoutes}
+            />
           </>
         ) : (
           <>
