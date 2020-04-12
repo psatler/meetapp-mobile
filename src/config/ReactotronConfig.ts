@@ -1,6 +1,7 @@
 import Reactotron from 'reactotron-react-native';
 import { reactotronRedux } from 'reactotron-redux';
 import reactotronSaga from 'reactotron-redux-saga';
+import AsyncStorage from '@react-native-community/async-storage';
 
 declare global {
   interface Console {
@@ -9,7 +10,9 @@ declare global {
 }
 
 if (__DEV__) {
-  const tron = Reactotron.configure({ host: 'localhost' })
+  //@ts-ignore
+  const tron = Reactotron.setAsyncStorageHandler(AsyncStorage) // AsyncStorage would either come from `react-native` or `@react-native-community/async-storage` depending on where you get it from
+    .configure({ host: 'localhost' })
     .useReactNative({
       storybook: true,
     })
