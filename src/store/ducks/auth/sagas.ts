@@ -1,10 +1,9 @@
-import { toast } from 'react-toastify';
+import { Alert } from 'react-native';
 
 import { AxiosResponse } from 'axios';
 import { all, takeLatest, call, put } from 'redux-saga/effects';
 
 import api from '../../../services/api';
-import history from '../../../services/history';
 import { signInSuccess, signFailure } from './actions';
 import {
   AuthTypes,
@@ -29,10 +28,10 @@ export function* signIn({ payload }: SignInRequestAction) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(token, user));
-    history.push('/dashboard');
+    // history.push('/dashboard');
   } catch (error) {
     console.tron.log(error);
-    toast.error('Authentication failure. Try again later');
+    Alert.alert('Error', 'Authentication failure. Try again later');
     yield put(signFailure());
   }
 }
@@ -47,12 +46,12 @@ export function* signUp({ payload }: SignUpRequestAction) {
       password,
     });
 
-    toast.success('Account created! You can now log in');
+    Alert.alert('Nice!', 'Account created! You can now log in');
 
     // after creating the registration, we redirect the user to the login page
-    history.push('/');
+    // history.push('/');
   } catch (error) {
-    toast.error('Sign up failured.');
+    Alert.alert('Ouch!', 'Sign up failured.');
     yield put(signFailure());
   }
 }
@@ -71,7 +70,7 @@ export function setToken({ payload }: ReduxPersistRehydrateAction) {
 }
 
 export function signOut() {
-  history.push('/');
+  // history.push('/');
 }
 
 export default all([

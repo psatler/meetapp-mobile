@@ -1,4 +1,4 @@
-import { toast } from 'react-toastify';
+import { Alert } from 'react-native';
 
 import { AxiosResponse } from 'axios';
 import { all, takeLatest, call, put } from 'redux-saga/effects';
@@ -26,10 +26,10 @@ export function* updateProfile({ payload }: UpdateProfileRequestAction) {
 
     console.log('response', response);
 
-    toast.success('Profile successfully updated!');
+    Alert.alert('Updated!', 'Profile successfully updated!');
     yield put(updateProfileSuccess(response.data));
   } catch (error) {
-    toast.error('Error while updating profile. Check your data!');
+    Alert.alert('Error!', 'Error while updating profile. Check your data!');
     yield put(updateProfileFailure());
   }
 }

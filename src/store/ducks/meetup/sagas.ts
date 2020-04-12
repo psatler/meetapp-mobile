@@ -1,4 +1,4 @@
-import { toast } from 'react-toastify';
+import { Alert } from 'react-native';
 
 import { AxiosResponse } from 'axios';
 import { format, parseISO } from 'date-fns';
@@ -68,24 +68,24 @@ export function* updateMeetup({ payload }: UpdateMeetupRequestAction) {
     };
 
     yield put(updateMeetupSuccess(meetupSuccessResponse));
-    toast.success(`Meetup updated!`);
+    Alert.alert('Success!', 'Meetup successfully updated!');
   } catch (error) {
     yield put(updateMeetupFailure());
-    toast.error(`Meetup was not updated. Try again later!`);
+    Alert.alert('Ouch!', 'Meetup was not updated. Try again later!');
   }
 }
 
 export function* createMeetup({ payload }: CreateMeetupRequestAction) {
   try {
-    const { banner_image_id } = payload; // eslint-disable-line
-    if (!banner_image_id) { // eslint-disable-line
+    const { banner_image_id } = payload;
+    if (!banner_image_id) {
       throw new Error('You should insert a banner image for the meetup!');
     }
     const newMeetupInfo = setMeetupInfo(payload);
 
     const response: AxiosResponse<DataResponse> = yield call(
       api.post,
-      `meetups/`,
+      'meetups/',
       newMeetupInfo
     );
 
@@ -100,14 +100,14 @@ export function* createMeetup({ payload }: CreateMeetupRequestAction) {
     };
 
     yield put(createMeetupSuccess(newMeetupSuccessResponse));
-    toast.success(`Meetup created!`);
+    Alert.alert('Success!', 'Meetup successfully created!');
   } catch (error) {
     if (error.message === 'You should insert a banner image for the meetup!') {
-      toast.error(error.message);
       yield put(createMeetupFailure());
+      Alert.alert('Banner is missing!', `${error.message}`);
     } else {
-      toast.error(`Meetup was not created. Try again later!`);
       yield put(createMeetupFailure());
+      Alert.alert('Ouch!', 'Meetup was not created. Try again later!');
     }
   }
 }
