@@ -11,7 +11,7 @@ function App() {
     (state: ApplicationState) => state.auth.loggedIn
   );
 
-  const statusBarBackgroundColor = isLoggedIn ? '#402944' : '#ffafbd';
+  const statusBarBackgroundColor = isLoggedIn ? '#2a2332' : '#ffafbd';
 
   // logged: #2a2332, #402944)
   // not logged: #ffafbd, #ffc3a0)
