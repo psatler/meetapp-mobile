@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 import Background from '~/components/Background';
 // import { Container } from './styles';
@@ -7,7 +7,9 @@ import Background from '~/components/Background';
 export default function Dashboard() {
   return (
     <Background>
-      <View />
+      <View>
+        <Text> Dashboard!! </Text>
+      </View>
     </Background>
   );
 }
