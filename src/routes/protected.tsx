@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 // protected screens
 import Profile from '~/pages/Profile';
 import Dashboard from '~/pages/Dashboard';
-import MeetupRegistration from '~/pages/MeetupRegistration';
+import MeetupSubscription from '~/pages/MeetupSubscription';
 
 const Tabs = createBottomTabNavigator();
 
@@ -37,14 +37,14 @@ function ProtectedRoutes() {
         component={Dashboard}
       />
       <Tabs.Screen
-        name="MeetupRegistration"
+        name="MeetupSubscription"
         options={{
           tabBarIcon: ({ color }) => (
             <Icon name="plus-one" size={20} color={color} />
           ),
-          tabBarTestID: 'MeetupRegistration-Tab',
+          tabBarTestID: 'MeetupSubscription-Tab',
         }}
-        component={MeetupRegistration}
+        component={MeetupSubscription}
       />
       <Tabs.Screen
         name="Profile"
