@@ -10,28 +10,28 @@ const AppStack = createStackNavigator();
 
 // screens
 import SignIn from '~/pages/SignIn';
-import SignUp from './pages/SignUp';
+import SignUp from '~/pages/SignUp';
+import ProtectedRoutes from '~/routes/protected';
 
-// protected routes
-import Profile from './pages/Profile';
-import Dashboard from './pages/Dashboard';
-import MeetupRegistration from './pages/MeetupRegistration';
+import { useSelector } from 'react-redux';
+import { ApplicationState } from '~/store/createStore';
 
 // refer to the auth flow: https://reactnavigation.org/docs/auth-flow/
 
 function Routes() {
-  const isLoggedIn = false;
+  const isLoggedIn = useSelector(
+    (state: ApplicationState) => state.auth.loggedIn
+  );
 
   return (
     <NavigationContainer>
       <AppStack.Navigator>
         {isLoggedIn ? (
           <>
-            <AppStack.Screen name="Dashboard" component={Dashboard} />
-            <AppStack.Screen name="Profile" component={Profile} />
             <AppStack.Screen
-              name="MeetupRegistration"
-              component={MeetupRegistration}
+              name="Home"
+              options={{ headerShown: false }}
+              component={ProtectedRoutes}
             />
           </>
         ) : (
