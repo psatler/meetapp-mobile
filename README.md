@@ -37,8 +37,13 @@ You can install Reactotron and use it to switch between the App screen and Story
 ### Dependencies used
 
 - [React Navigation v5](https://reactnavigation.org/)
+- [Axios](https://github.com/axios/axios)
+- [Date FNS](https://github.com/date-fns/date-fns)
+- [Typesafe Actions](https://github.com/piotrwitek/typesafe-actions)
 - [react-native-linear-gradient](https://github.com/react-native-community/react-native-linear-gradient)
 - [Reactotron](https://github.com/infinitered/reactotron) for debugging
+- [Redux Persist](https://github.com/rt2zz/redux-persist) for persisting the store info
+- [Async Store](https://github.com/react-native-community/async-storage)
 - [Storybook](https://storybook.js.org/)
 
 

@@ -34,15 +34,16 @@ and also import the config file at entry file of the project at `src/index.tsx`.
 
 **TIP**: you might need to run `adb reverse tcp:9090 tcp:9090` in order to be able to get the device connected to reactotron.
 
-This project uses Mobx State Tree as its state management tool. So, next, we will install the dependencies needed to hook up all of them with Reactotron.
+This project uses Redux as its state management tool. So, next, we will install the dependencies needed to hook up all of them with Reactotron.
 
 ```
-yarn add mobx mobx-react mobx-state-tree
+yarn add reactotron-redux-saga reactotron-redux -D
 ```
-Then, as shown [here](https://github.com/infinitered/reactotron/blob/master/docs/plugin-mst.md), we install the plugin for mobx state tree
+and also need to install
 ```
-yarn add -D reactotron-mst
+yarn add redux redux-saga react-redux
 ```
+
 
 **SUPPORT FOR STORYBOOK SWITCHER**
 Next, we set up the support for [Storybook](https://storybook.js.org/) by following the guide at [https://github.com/infinitered/reactotron/blob/master/docs/plugin-storybook.md](https://github.com/infinitered/reactotron/blob/master/docs/plugin-storybook.md).
