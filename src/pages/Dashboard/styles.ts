@@ -5,7 +5,7 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const FlatListStyled = styled.FlatList.attrs({
-  showsVerticalIndicator: false,
+  showsVerticalScrollIndicator: false,
   contentContainerStyle: {
     padding: 20, // giving a litle bit of padding to the outer content
   },
