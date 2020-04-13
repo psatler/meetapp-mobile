@@ -18,9 +18,11 @@ export const Information = styled.View`
 export const MeetappTitle = styled.Text`
   font-size: 22px;
   font-style: italic;
+  text-align: justify;
 `;
 export const MeetappDescription = styled.Text`
   font-size: 16px;
+  text-align: justify;
 `;
 export const MeetappLocation = styled.Text`
   align-self: flex-end;

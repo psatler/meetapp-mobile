@@ -12,22 +12,32 @@ import {
   SubscribeButton,
 } from './styles';
 
-export default function MeetupCard() {
+interface MeetupCardProps {
+  title: string;
+  bannerUrl: string;
+  description: string;
+  location: string;
+}
+
+const MeetupCard: React.FC<MeetupCardProps> = ({
+  title,
+  bannerUrl,
+  description,
+  location,
+}) => {
   return (
     <Container>
       <BannerImage
         source={{
-          uri:
-            'https://s3.amazonaws.com/ckl-website-static/wp-content/uploads/2019/09/React_Native_Animation.png',
+          uri: bannerUrl
+            ? `${bannerUrl}`
+            : 'https://via.placeholder.com/500x300.png/09f/fff',
         }}
       />
       <Information>
-        <MeetappTitle>React Native</MeetappTitle>
-        <MeetappDescription>
-          Talking about React Native new version, 0.62, along with severalother
-          things about this released
-        </MeetappDescription>
-        <MeetappLocation>Vitória, ES, Brazil</MeetappLocation>
+        <MeetappTitle>{title}</MeetappTitle>
+        <MeetappDescription>{description}</MeetappDescription>
+        <MeetappLocation> {location}</MeetappLocation>
         <SubscribeButton>Subscribe</SubscribeButton>
       </Information>
 
@@ -36,4 +46,6 @@ export default function MeetupCard() {
       </TouchableOpacity> */}
     </Container>
   );
-}
+};
+
+export default MeetupCard;

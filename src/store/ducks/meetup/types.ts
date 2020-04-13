@@ -1,3 +1,5 @@
+import { UserInfo } from '~/store/ducks/user/types';
+
 export interface DataResponse {
   id: number;
   past: boolean;
@@ -7,7 +9,7 @@ export interface DataResponse {
   date: string;
   dateFormatted: string;
   banner: BannerInfo;
-  // organizer: UserInfo;
+  organizer: UserInfo;
 }
 
 export interface BannerInfo {
