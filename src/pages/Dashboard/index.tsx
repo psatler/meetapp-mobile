@@ -59,7 +59,7 @@ export default function Dashboard() {
               key={item.id}
               title={item.title}
               description={item.description}
-              bannerUrl={item.banner}
+              bannerUrl={item.banner.url}
               location={item.location}
             />
           )}
