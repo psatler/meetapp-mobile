@@ -20,9 +20,6 @@ export default function Dashboard() {
     (state: ApplicationState) => state.meetups.meetupsList
   );
 
-  const [flag, setflag] = useState('');
-  // console.tron.log(isFocused);
-
   useEffect(() => {
     async function fetchAllMeetups() {
       // on the web, this request is to the /organizer endpoint, for example
@@ -39,11 +36,14 @@ export default function Dashboard() {
       });
 
       dispatch(loadMeetups(formattedMeetups));
-      setflag('changed');
     }
 
     fetchAllMeetups();
   }, [dispatch]);
+
+  function handleSubscribe(meetupId: number) {
+    console.tron.log(meetupId);
+  }
 
   return (
     <Background isLoggedIn>
@@ -52,7 +52,6 @@ export default function Dashboard() {
 
         <FlatListStyled
           data={meetappList}
-          extraData={flag}
           keyExtractor={(item: DataResponse) => String(item.id)}
           renderItem={({ item }) => (
             <MeetupCard
@@ -61,6 +60,7 @@ export default function Dashboard() {
               description={item.description}
               bannerUrl={item.banner.url}
               location={item.location}
+              onSubscribe={() => handleSubscribe(item.id)}
             />
           )}
         />
