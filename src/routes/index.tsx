@@ -30,7 +30,10 @@ function Routes() {
           <>
             <AppStack.Screen
               name="Home"
-              options={{ headerShown: false }}
+              options={{
+                headerShown: false,
+                ...TransitionPresets.SlideFromRightIOS,
+              }}
               component={ProtectedRoutes}
             />
           </>

@@ -27,22 +27,22 @@ function ProtectedRoutes() {
         inactiveTintColor: 'rgba(255, 255, 255, 0.6)',
       }}>
       <Tabs.Screen
-        name="Dashboard"
+        name="Meetups"
         options={{
           tabBarIcon: ({ color }) => (
             <Icon name="dashboard" size={20} color={color} />
           ),
-          tabBarTestID: 'Dashboard-Tab',
+          tabBarTestID: 'Meetups-Tab',
         }}
         component={Dashboard}
       />
       <Tabs.Screen
-        name="MeetupSubscription"
+        name="My Subscriptions"
         options={{
           tabBarIcon: ({ color }) => (
             <Icon name="plus-one" size={20} color={color} />
           ),
-          tabBarTestID: 'MeetupSubscription-Tab',
+          tabBarTestID: 'My Subscriptions-Tab',
         }}
         component={MeetupSubscription}
       />
