@@ -4,9 +4,17 @@ import Background from '~/components/Background';
 import Header from '~/components/Header';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { Container, Form, FormInput, SubmitButton, Separator } from './styles';
+import {
+  Container,
+  Form,
+  FormInput,
+  SubmitButton,
+  Separator,
+  LogoutButton,
+} from './styles';
 import { ApplicationState } from '~/store/createStore';
 import { updateProfileRequest } from '~/store/ducks/user/actions';
+import { signOutRequest } from '~/store/ducks/auth/actions';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -43,6 +51,10 @@ export default function Profile() {
         confirmPassword,
       })
     );
+  }
+
+  function handleLogout() {
+    dispatch(signOutRequest());
   }
 
   return (
@@ -114,6 +126,7 @@ export default function Profile() {
             onChangeText={setConfirmPassword}
           />
           <SubmitButton onPress={handleSubmit}>Update Profile</SubmitButton>
+          <LogoutButton onPress={handleLogout}>Log out</LogoutButton>
         </Form>
       </Container>
     </Background>
