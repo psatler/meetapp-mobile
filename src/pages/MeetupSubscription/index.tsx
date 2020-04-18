@@ -18,12 +18,6 @@ interface SubscriptionProps {
   dateFormatted: string;
 }
 
-interface SeeDateProps {
-  title: string;
-  location: string;
-  dateFormatted: string;
-}
-
 export default function MeetupSubscription() {
   const [subscriptionList, setSubscriptionList] = useState<SubscriptionProps[]>(
     []
