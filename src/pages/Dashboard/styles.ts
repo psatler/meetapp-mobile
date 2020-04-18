@@ -4,6 +4,7 @@ export const Container = styled.SafeAreaView`
   flex: 1;
 `;
 
+//@ts-ignore
 export const FlatListStyled = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {

@@ -70,6 +70,7 @@ export default function Dashboard() {
         <FlatListStyled
           data={meetappList}
           keyExtractor={(item: DataResponse) => String(item.id)}
+          //@ts-ignore
           renderItem={({ item }) => (
             <MeetupCard
               key={item.id}

@@ -59,7 +59,7 @@ export default function MeetupSubscription() {
   );
 
   function handleSeeMoreInfo(meetup) {
-    console.tron.log(meetup);
+    // console.tron.log(meetup);
   }
 
   return (
@@ -70,6 +70,7 @@ export default function MeetupSubscription() {
         <FlatListStyled
           data={subscriptionList}
           keyExtractor={(item: DataResponse) => String(item.id)}
+          //@ts-ignore
           renderItem={({ item }) => (
             <MeetupCard
               key={item.meetup.id}

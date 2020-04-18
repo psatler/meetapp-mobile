@@ -71,6 +71,7 @@ export default function Profile() {
             // acessibility stuff below
             blurOnSubmit={false}
             returnKeyType="next"
+            //@ts-ignore
             onSubmitEditing={() => emailRef!.current!.focus()}
             value={name}
             onChangeText={setName}
@@ -85,6 +86,7 @@ export default function Profile() {
             blurOnSubmit={false}
             ref={emailRef}
             returnKeyType="next"
+            //@ts-ignore
             onSubmitEditing={() => oldPasswordRef!.current!.focus()}
             value={email}
             onChangeText={setEmail}
@@ -99,6 +101,7 @@ export default function Profile() {
             // acessibility stuff below
             ref={oldPasswordRef}
             returnKeyType="next"
+            //@ts-ignore
             onSubmitEditing={() => passwordRef!.current!.focus()}
             value={oldPassword}
             onChangeText={setOldPassword}
@@ -110,6 +113,7 @@ export default function Profile() {
             // acessibility stuff below
             ref={passwordRef}
             returnKeyType="next"
+            //@ts-ignore
             onSubmitEditing={() => confirmPasswordRef!.current!.focus()}
             value={password}
             onChangeText={setPassword}
