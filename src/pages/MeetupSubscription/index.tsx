@@ -15,6 +15,13 @@ import { Container, FlatListStyled } from './styles';
 
 interface SubscriptionProps {
   meetup: DataResponse;
+  dateFormatted: string;
+}
+
+interface SeeDateProps {
+  title: string;
+  location: string;
+  dateFormatted: string;
 }
 
 export default function MeetupSubscription() {
@@ -58,8 +65,11 @@ export default function MeetupSubscription() {
     }, [])
   );
 
-  function handleSeeMoreInfo(meetup) {
-    // console.tron.log(meetup);
+  function handleSeeMoreInfo({ meetup, dateFormatted }: SubscriptionProps) {
+    Alert.alert(
+      meetup.title,
+      `It will be in ${meetup.location} in ${dateFormatted}`
+    );
   }
 
   return (
@@ -78,8 +88,13 @@ export default function MeetupSubscription() {
               description={item.meetup.description}
               bannerUrl={item.meetup?.banner?.url}
               location={item.meetup.location}
-              onSubscribe={() => handleSeeMoreInfo(item.meetup)}
-              subButtonText="See more"
+              onSubscribe={() =>
+                handleSeeMoreInfo({
+                  meetup: item.meetup,
+                  dateFormatted: item.dateFormatted,
+                })
+              }
+              subButtonText="See Date and Time of Event"
             />
           )}
         />
