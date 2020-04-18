@@ -2,7 +2,11 @@ import styled from 'styled-components/native';
 import Button from '~/components/Button';
 import Input from '~/components/Input';
 
-export const Container = styled.View``;
+// Using SafeAreaView instead of View because on Iphone the StatusBar
+// is included in the calc to position the rest of the elements
+export const Container = styled.SafeAreaView`
+  flex: 1;
+`;
 
 export const Form = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false,

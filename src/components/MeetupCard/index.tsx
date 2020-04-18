@@ -18,6 +18,7 @@ interface MeetupCardProps {
   description: string;
   location: string;
   onSubscribe: () => void;
+  subButtonText: string;
 }
 
 const MeetupCard: React.FC<MeetupCardProps> = ({
@@ -26,6 +27,7 @@ const MeetupCard: React.FC<MeetupCardProps> = ({
   description,
   location,
   onSubscribe,
+  subButtonText = 'Subscribe',
 }) => {
   return (
     <Container>
@@ -40,7 +42,9 @@ const MeetupCard: React.FC<MeetupCardProps> = ({
         <MeetappTitle>{title}</MeetappTitle>
         <MeetappDescription>{description}</MeetappDescription>
         <MeetappLocation> {location}</MeetappLocation>
-        <SubscribeButton onPress={onSubscribe}>Subscribe</SubscribeButton>
+        <SubscribeButton onPress={onSubscribe} subButtonText={subButtonText}>
+          {subButtonText}
+        </SubscribeButton>
       </Information>
 
       {/* <TouchableOpacity onPress={() => {}}>

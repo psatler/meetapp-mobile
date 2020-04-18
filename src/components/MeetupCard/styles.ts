@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import Button from '~/components/Button';
 
 export const Container = styled.View`
@@ -28,7 +28,18 @@ export const MeetappLocation = styled.Text`
   align-self: flex-end;
 `;
 
-export const SubscribeButton = styled(Button)`
+interface SubscribeButtonProps {
+  subButtonText: string;
+}
+
+export const SubscribeButton = styled(Button)<SubscribeButtonProps>`
   /* background: #ffafbd; */
+
+  ${(props) =>
+    props.subButtonText !== 'Subscribe' &&
+    css`
+      background: #7159c1;
+    `}
+
   margin-top: 5px;
 `;
