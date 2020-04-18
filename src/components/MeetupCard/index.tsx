@@ -18,7 +18,7 @@ interface MeetupCardProps {
   description: string;
   location: string;
   onSubscribe: () => void;
-  subButtonText: string;
+  subButtonText?: string;
 }
 
 const MeetupCard: React.FC<MeetupCardProps> = ({

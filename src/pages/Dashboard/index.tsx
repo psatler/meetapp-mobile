@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { format, parseISO } from 'date-fns';
 
@@ -13,6 +14,11 @@ import { Container, FlatListStyled } from './styles';
 
 import Header from '~/components/Header';
 import MeetupCard from '~/components/MeetupCard';
+
+interface HandleSubscribeProps {
+  meetupId: number;
+  meetupTitle: string;
+}
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -41,8 +47,19 @@ export default function Dashboard() {
     fetchAllMeetups();
   }, [dispatch]);
 
-  function handleSubscribe(meetupId: number) {
-    console.tron.log(meetupId);
+  async function handleSubscribe({
+    meetupId,
+    meetupTitle,
+  }: HandleSubscribeProps) {
+    try {
+      if (typeof meetupId === 'number') {
+        await api.post(`/meetup/${meetupId}/subscription`);
+
+        Alert.alert('Nice!', `You have been subscribed to ${meetupTitle}`);
+      }
+    } catch (err) {
+      Alert.alert('Ouch!', err.response.data.error);
+    }
   }
 
   return (
@@ -60,7 +77,9 @@ export default function Dashboard() {
               description={item.description}
               bannerUrl={item.banner.url}
               location={item.location}
-              onSubscribe={() => handleSubscribe(item.id)}
+              onSubscribe={() =>
+                handleSubscribe({ meetupId: item.id, meetupTitle: item.title })
+              }
             />
           )}
         />

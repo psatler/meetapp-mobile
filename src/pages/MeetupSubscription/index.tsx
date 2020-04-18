@@ -44,9 +44,9 @@ export default function MeetupSubscription() {
           if (isActive) {
             setSubscriptionList(formattedMeetups);
           }
-        } catch (error) {
+        } catch (err) {
           // Handle error
-          Alert.alert(error.toString(), error.message.toString());
+          Alert.alert(err.toString(), err.response.data.error);
         }
       };
 
