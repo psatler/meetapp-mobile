@@ -11,7 +11,7 @@
 
 # Meetapp Mobile
 
-> Mobile Frontend (in React Native) of the [meetapp backend app](https://github.com/psatler/meetapp-backend)
+> Mobile Frontend for users (in React Native) of the [meetapp backend app](https://github.com/psatler/meetapp-backend)
 
 ### Running the app via USB
 
@@ -33,6 +33,12 @@ adb devices
 ```
 
 You can install Reactotron and use it to switch between the App screen and Storybook screens.
+
+The following is usually used to get Reactotron connected to the application:
+```
+adb reverse tcp:9090 tcp:9090
+```
+and then, reload the app with 'r'
 
 ### Dependencies used
 
