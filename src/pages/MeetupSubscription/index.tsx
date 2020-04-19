@@ -59,10 +59,50 @@ export default function MeetupSubscription() {
     }, [])
   );
 
-  function handleSeeMoreInfo({ meetup, dateFormatted }: SubscriptionProps) {
+  async function cancelSub({
+    meetupId,
+    meetupTitle,
+  }: {
+    meetupId: number;
+    meetupTitle: string;
+  }) {
+    try {
+      if (typeof meetupId === 'number') {
+        await api.delete(`/meetup/${meetupId}/subscription`);
+
+        setSubscriptionList((subList) =>
+          subList.filter((item) => item.meetup.id !== meetupId)
+        );
+        Alert.alert(
+          'Unsubscription done!',
+          `You are not subscribed to ${meetupTitle} anymore`
+        );
+      }
+    } catch (err) {
+      const errorResponse = err.response.data.error;
+      Alert.alert('Unsubscription was not possible!', errorResponse);
+    }
+  }
+
+  function handleCancelSubscription({ meetup }: SubscriptionProps) {
     Alert.alert(
-      meetup.title,
-      `It will be in ${meetup.location} in ${dateFormatted}`
+      `Canceling subscription from  ${meetup.title}.`,
+      'Are you sure you want to cancel the subscription from this meetup?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {},
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () =>
+            cancelSub({ meetupId: meetup.id, meetupTitle: meetup.title }),
+        },
+      ],
+      {
+        // cancelable: false,
+      }
     );
   }
 
@@ -83,12 +123,12 @@ export default function MeetupSubscription() {
               bannerUrl={item.meetup?.banner?.url}
               location={item.meetup.location}
               onSubscribe={() =>
-                handleSeeMoreInfo({
+                handleCancelSubscription({
                   meetup: item.meetup,
                   dateFormatted: item.dateFormatted,
                 })
               }
-              subButtonText="See Date and Time of Event"
+              subButtonText="Cancel Subscription"
             />
           )}
         />
