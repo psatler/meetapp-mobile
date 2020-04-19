@@ -1,5 +1,6 @@
 // import { AppRegistry } from 'react-native';
 import { getStorybookUI, configure } from '@storybook/react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 // import { name as appName } from '../app.json';
 
 import './rn-addons';
@@ -15,7 +16,7 @@ const StorybookUIRoot = getStorybookUI({
   port: 7007,
   host: 'localhost',
   onDeviceUI: true,
-  asyncStorage: require('@react-native-community/async-storage'),
+  asyncStorage: AsyncStorage,
 });
 
 // If you are using React Native vanilla and after installation you don't see your app name here, write it manually.
