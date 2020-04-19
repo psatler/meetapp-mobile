@@ -1,14 +1,13 @@
 import React from 'react';
-// import { TouchableOpacity } from 'react-native';
-// import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
   Container,
   BannerImage,
   Information,
   MeetappTitle,
-  MeetappDescription,
-  MeetappLocation,
+  IconTextContainer,
+  TextContainer,
   SubscribeButton,
 } from './styles';
 
@@ -16,6 +15,8 @@ interface MeetupCardProps {
   title: string;
   bannerUrl: string;
   description: string;
+  dateFormatted: string;
+  organizer: string;
   location: string;
   onSubscribe: () => void;
   subButtonText?: string;
@@ -25,7 +26,9 @@ const MeetupCard: React.FC<MeetupCardProps> = ({
   title,
   bannerUrl,
   description,
+  dateFormatted,
   location,
+  organizer,
   onSubscribe,
   subButtonText = 'Subscribe',
 }) => {
@@ -40,8 +43,25 @@ const MeetupCard: React.FC<MeetupCardProps> = ({
       />
       <Information>
         <MeetappTitle>{title}</MeetappTitle>
-        <MeetappDescription>{description}</MeetappDescription>
-        <MeetappLocation> {location}</MeetappLocation>
+        {subButtonText !== 'Subscribe' && (
+          <IconTextContainer>
+            <Icon name="description" size={20} color="rgba(0,0,0, 0.6)" />
+            <TextContainer> {description} </TextContainer>
+          </IconTextContainer>
+        )}
+        <IconTextContainer>
+          <Icon name="date-range" size={20} color="rgba(0,0,0, 0.6)" />
+          <TextContainer> {dateFormatted} </TextContainer>
+        </IconTextContainer>
+        <IconTextContainer>
+          <Icon name="location-on" size={20} color="rgba(0,0,0, 0.6)" />
+          <TextContainer> {location} </TextContainer>
+        </IconTextContainer>
+        <IconTextContainer>
+          <Icon name="person" size={20} color="rgba(0,0,0, 0.6)" />
+          <TextContainer> Organizador: {organizer} </TextContainer>
+        </IconTextContainer>
+        {/* <MeetappLocation> {location}</MeetappLocation> */}
         <SubscribeButton onPress={onSubscribe} subButtonText={subButtonText}>
           {subButtonText}
         </SubscribeButton>

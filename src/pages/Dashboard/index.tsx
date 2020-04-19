@@ -76,8 +76,10 @@ export default function Dashboard() {
               key={item.id}
               title={item.title}
               description={item.description}
-              bannerUrl={item.banner.url}
+              bannerUrl={item.banner?.url}
               location={item.location}
+              organizer={item.organizer.name}
+              dateFormatted={item.dateFormatted}
               onSubscribe={() =>
                 handleSubscribe({ meetupId: item.id, meetupTitle: item.title })
               }

@@ -122,6 +122,8 @@ export default function MeetupSubscription() {
               description={item.meetup.description}
               bannerUrl={item.meetup?.banner?.url}
               location={item.meetup.location}
+              organizer={item.meetup.organizer.name}
+              dateFormatted={item.dateFormatted}
               onSubscribe={() =>
                 handleCancelSubscription({
                   meetup: item.meetup,

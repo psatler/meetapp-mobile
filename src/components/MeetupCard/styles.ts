@@ -20,12 +20,17 @@ export const MeetappTitle = styled.Text`
   font-style: italic;
   text-align: justify;
 `;
-export const MeetappDescription = styled.Text`
+
+export const IconTextContainer = styled.View`
+  flex-direction: row;
+  flex: 1;
+`;
+
+export const TextContainer = styled.Text`
   font-size: 16px;
   text-align: justify;
-`;
-export const MeetappLocation = styled.Text`
-  align-self: flex-end;
+  margin: 0 10px;
+  margin-left: 15px;
 `;
 
 interface SubscribeButtonProps {
