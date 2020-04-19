@@ -59,7 +59,7 @@ const MeetupCard: React.FC<MeetupCardProps> = ({
         </IconTextContainer>
         <IconTextContainer>
           <Icon name="person" size={20} color="rgba(0,0,0, 0.6)" />
-          <TextContainer> Organizador: {organizer} </TextContainer>
+          <TextContainer> Organizer: {organizer} </TextContainer>
         </IconTextContainer>
         {/* <MeetappLocation> {location}</MeetappLocation> */}
         <SubscribeButton onPress={onSubscribe} subButtonText={subButtonText}>

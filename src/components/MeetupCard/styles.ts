@@ -23,14 +23,13 @@ export const MeetappTitle = styled.Text`
 
 export const IconTextContainer = styled.View`
   flex-direction: row;
-  flex: 1;
 `;
 
 export const TextContainer = styled.Text`
+  flex: 1;
   font-size: 16px;
   text-align: justify;
-  margin: 0 10px;
-  margin-left: 15px;
+  margin-left: 5px;
 `;
 
 interface SubscribeButtonProps {
