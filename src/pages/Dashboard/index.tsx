@@ -26,6 +26,7 @@ export default function Dashboard() {
   const [meetappList, setMeetappList] = useState<DataResponse[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   // const meetappList = useSelector(
   //   (state: ApplicationState) => state.meetups.meetupsList
   // );
@@ -34,8 +35,6 @@ export default function Dashboard() {
     async (page = 1) => {
       // on the web, this request is to the /organizer endpoint, for example
       try {
-        setLoadingMore(true);
-
         const response = await api.get('meetups', {
           params: {
             page,
@@ -55,6 +54,7 @@ export default function Dashboard() {
           };
         });
 
+        setRefreshing(false);
         setLoadingMore(false);
         setCurrentPage(page);
         setMeetappList(
@@ -72,8 +72,15 @@ export default function Dashboard() {
   );
 
   function loadMore() {
+    setLoadingMore(true);
     const nextPage = currentPage + 1;
     fetchMeetups(nextPage);
+  }
+
+  function pullToRefresh() {
+    setRefreshing(true);
+    setMeetappList([]); // clearing it out so the list blinks on screen giving a sensation of update
+    fetchMeetups(1);
   }
 
   useEffect(() => {
@@ -103,6 +110,8 @@ export default function Dashboard() {
         <FlatListStyled
           data={meetappList}
           keyExtractor={(item: DataResponse) => String(item.id)}
+          onRefresh={pullToRefresh}
+          refreshing={refreshing}
           onEndReachedThreshold={0.35} // trigger the method in the onEndReached prop when it gets at 35% of the end of list
           onEndReached={loadMore}
           ListFooterComponent={() => (
