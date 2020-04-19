@@ -27,6 +27,8 @@ export default function Dashboard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [totalAlreadyLoaded, setTotalAlreadyLoaded] = useState(0);
+  const [totalOnBackend, setTotalOnBackend] = useState(0);
   // const meetappList = useSelector(
   //   (state: ApplicationState) => state.meetups.meetupsList
   // );
@@ -40,6 +42,8 @@ export default function Dashboard() {
             page,
           },
         });
+
+        setTotalOnBackend(response.headers['x-total-count']);
 
         const meetups: DataResponse[] = response.data;
 
@@ -60,6 +64,13 @@ export default function Dashboard() {
         setMeetappList(
           page > 1 ? [...meetappList, ...formattedMeetups] : formattedMeetups
         );
+
+        setTotalAlreadyLoaded(
+          page > 1
+            ? [...meetappList, ...formattedMeetups].length
+            : formattedMeetups.length
+        );
+
         // dispatch(loadMeetups(formattedMeetups));
       } catch (error) {
         Alert.alert(
@@ -72,9 +83,12 @@ export default function Dashboard() {
   );
 
   function loadMore() {
-    setLoadingMore(true);
-    const nextPage = currentPage + 1;
-    fetchMeetups(nextPage);
+    if (totalAlreadyLoaded < totalOnBackend) {
+      // if there is more itens to fetch on backend
+      setLoadingMore(true);
+      const nextPage = currentPage + 1;
+      fetchMeetups(nextPage);
+    }
   }
 
   function pullToRefresh() {
