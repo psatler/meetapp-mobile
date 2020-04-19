@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import { Alert } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Alert, ActivityIndicator } from 'react-native';
+// import { useSelector, useDispatch } from 'react-redux';
 import { format, parseISO } from 'date-fns';
 
 import api from '~/services/api';
 
-import { loadMeetups } from '~/store/ducks/meetup/actions';
-import { ApplicationState } from '~/store/createStore';
+// import { loadMeetups } from '~/store/ducks/meetup/actions';
+// import { ApplicationState } from '~/store/createStore';
 import { DataResponse } from '~/store/ducks/meetup/types';
 
 import Background from '~/components/Background';
@@ -21,31 +21,64 @@ interface HandleSubscribeProps {
 }
 
 export default function Dashboard() {
-  const dispatch = useDispatch();
-  const meetappList = useSelector(
-    (state: ApplicationState) => state.meetups.meetupsList
+  // const dispatch = useDispatch();
+
+  const [meetappList, setMeetappList] = useState<DataResponse[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loadingMore, setLoadingMore] = useState(false);
+  // const meetappList = useSelector(
+  //   (state: ApplicationState) => state.meetups.meetupsList
+  // );
+
+  const fetchMeetups = useCallback(
+    async (page = 1) => {
+      // on the web, this request is to the /organizer endpoint, for example
+      try {
+        setLoadingMore(true);
+
+        const response = await api.get('meetups', {
+          params: {
+            page,
+          },
+        });
+
+        const meetups: DataResponse[] = response.data;
+
+        const formattedMeetups = meetups.map((item) => {
+          const dateFormatted = format(
+            parseISO(item.date),
+            "MMMM dd 'at' HH:mm"
+          );
+          return {
+            ...item,
+            dateFormatted,
+          };
+        });
+
+        setLoadingMore(false);
+        setCurrentPage(page);
+        setMeetappList(
+          page > 1 ? [...meetappList, ...formattedMeetups] : formattedMeetups
+        );
+        // dispatch(loadMeetups(formattedMeetups));
+      } catch (error) {
+        Alert.alert(
+          'Ouch! The meetups could not be loaded!',
+          'Something went wrong!. Try again later!'
+        );
+      }
+    },
+    [meetappList]
   );
 
+  function loadMore() {
+    const nextPage = currentPage + 1;
+    fetchMeetups(nextPage);
+  }
+
   useEffect(() => {
-    async function fetchAllMeetups() {
-      // on the web, this request is to the /organizer endpoint, for example
-      const response = await api.get('meetups');
-
-      const meetups: DataResponse[] = response.data;
-
-      const formattedMeetups = meetups.map((item) => {
-        const dateFormatted = format(parseISO(item.date), "MMMM dd 'at' HH:mm");
-        return {
-          ...item,
-          dateFormatted,
-        };
-      });
-
-      dispatch(loadMeetups(formattedMeetups));
-    }
-
-    fetchAllMeetups();
-  }, [dispatch]);
+    fetchMeetups();
+  }, []);
 
   async function handleSubscribe({
     meetupId,
@@ -70,6 +103,11 @@ export default function Dashboard() {
         <FlatListStyled
           data={meetappList}
           keyExtractor={(item: DataResponse) => String(item.id)}
+          onEndReachedThreshold={0.35} // trigger the method in the onEndReached prop when it gets at 35% of the end of list
+          onEndReached={loadMore}
+          ListFooterComponent={() => (
+            <ListBottomActivityIndicator loadingMore={loadingMore} />
+          )}
           //@ts-ignore
           renderItem={({ item }) => (
             <MeetupCard
@@ -89,4 +127,16 @@ export default function Dashboard() {
       </Container>
     </Background>
   );
+}
+
+function ListBottomActivityIndicator({
+  loadingMore,
+}: {
+  loadingMore: boolean;
+}) {
+  if (loadingMore) {
+    return <ActivityIndicator size="small" color="#FFF" />;
+  }
+
+  return null;
 }
