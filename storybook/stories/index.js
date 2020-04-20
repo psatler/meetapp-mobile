@@ -35,7 +35,7 @@ storiesOf('MeetupCard', module)
       title={'Title of the meetup'}
       bannerUrl={'https://via.placeholder.com/500x300.png/09f/fff'}
       description={'Meetup description Meetup description Meetup description '}
-      dateFormatted={''}
+      dateFormatted={'March 12 at 13:30'}
       location={'Vitória, ES, Brasil'}
       organizer={'Pablo Satler'}
       onSubscribe={() => {}}
@@ -48,7 +48,7 @@ storiesOf('MeetupCard', module)
       title={'Title of the meetup'}
       bannerUrl={'https://via.placeholder.com/500x300.png/09f/fff'}
       description={'Meetup description Meetup description Meetup description '}
-      dateFormatted={''}
+      dateFormatted={'August 15 at 17:00'}
       location={'Vitória, ES, Brasil'}
       organizer={'Pablo Satler'}
       onSubscribe={() => {}}
